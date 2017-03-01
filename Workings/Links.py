@@ -27,7 +27,8 @@ class CleanLink:
         cleanOutput = self.str.rstrip('\n')
         return cleanOutput
     
-    
+
+"""
 aLink = "http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3.txt"
 print(validLink(aLink))
 
@@ -36,3 +37,4 @@ print(bLink)
 bLink = CleanLink(bLink).clean
 print(bLink)
 print("test line")
+"""

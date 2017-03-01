@@ -17,6 +17,8 @@ class Grid:
         gridMult = self.rows + 1
         theGrid = [ [False]*gridMult for s in range(0, gridMult, 1) ]
         return theGrid
-    
-aGrid = Grid(0).grid
+
+"""
+aGrid = Grid(4).grid
 print(aGrid)
+"""
