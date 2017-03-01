@@ -1,6 +1,14 @@
 #creates the grid with initial values of False
-class Grid: 
+class CoordinateList: 
+    def __init__(self, intNum):
+        self.length = intNum
+        self.list = [False] * (intNum + 1)
+        
+myCoords = CoordinateList(2).list
+print(myCoords)
 
+
+"""
     #input requirements:
     # num s.t. int > 0
     
@@ -18,7 +26,6 @@ class Grid:
         theGrid = [ [False]*gridMult for s in range(0, gridMult, 1) ]
         return theGrid
 
-"""
 aGrid = Grid(4).grid
 print(aGrid)
 """

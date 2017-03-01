@@ -16,6 +16,7 @@ print("yList:", yList)
 
 """
 INSTRUCTIONS
+# a few formatting and test functions are combined into a single function
 """
 #puts the Instruction into the desired format
 def iFormat(str):
@@ -80,6 +81,17 @@ print("Order 2:", iOrder(i2))
 print("Order 3:", iOrder(i3))
 
 
+#changes numbers into int
+def iInt(iList):
+    for i in range(1, 5, 1):
+        iList[i] = int(iList[i])
+    return iList
+
+print("")
+print("iInt 1:", iInt(i1))
+print("iInt 2:", iInt(i2))
+print("iInt 3:", iInt(i3))
+
 def iMake(str, upperBound): #input string from file, upperBound from file as int
     iStatus = True
     while iStatus == True:
@@ -87,5 +99,22 @@ def iMake(str, upperBound): #input string from file, upperBound from file as int
         iStatus = iValid(iList) #check that the list has a valid form
         iList = iRange(iList, upperBound) #make sure that the range is within the bounds
         iStatus = iOrder(iList) #check that the range is well ordered
+        iList = iInt(iList) #convert numbers into int
+        break
+    if iStatus == True:
         return iList
+    else:
+        return ['pass', False, False, False, False]
+    
+made1 = "turn on 1,2 through 3,4"
+made2 = "turn off 2,3 through 2, 3"
+made3 = "switch 4,4 through 5,5"
 
+made1 = iMake(made1, lengthValue)
+made2 = iMake(made2, lengthValue)
+made3 = iMake(made3, lengthValue)
+
+print("")
+print(made1)
+print(made2)
+print(made3)
