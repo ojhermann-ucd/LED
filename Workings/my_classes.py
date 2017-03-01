@@ -81,7 +81,7 @@ def iMake(str, upperBound): #input string from file, upperBound from file as int
     if iStatus == True:
         return iList
     else:
-        return ['pass', False, False, False, False]
+        return ['pass']
     
 made1 = "turn on 1,2 through 3,4"
 made2 = "turn off 2,3 through 2, 3"
@@ -110,10 +110,14 @@ def mRange(iList, mAxis): #list, str
 
 #manipulates the boolean values of xList and yList given information in iList
 def mMain(iList, zList, mAxis): #list, list, str
+    #command
+    iCommand = iList[0]
+    #check
+    if iCommand == 'pass':
+        return zList
     #range
     zRange = mRange(iList, mAxis)
     #manipulate booleans
-    iCommand = iList[0]
     for z in zRange:
         if iCommand == "on":
             zList[z] = True

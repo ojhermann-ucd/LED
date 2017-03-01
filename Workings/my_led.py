@@ -39,5 +39,17 @@ with theSource as theSrc:
 #xList and yList
 xList = CoordinateList(theSize).list
 yList = CoordinateList(theSize).list
+count = 0
+with theSource as theSrc:
+    for line in theSrc:
+        if count == 0:
+            pass
+        else:
+            #make the instruction
+            iList = my_classes.iMake(line)
+            #xList manipulation
+            xList = mMain(iList, xList, 'x')
+            #yList manipulation
+            yList = mMain(iList, yList, 'y')
+        count += 1
 
-#the action
