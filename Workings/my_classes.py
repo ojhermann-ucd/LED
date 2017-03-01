@@ -4,6 +4,7 @@ CONTENTS
 #instructions
 #manipulations
 #links
+#size
 """
 
 
@@ -169,3 +170,30 @@ bLink = CleanLink(bLink).clean
 print("")
 print(bLink)
 print("test line")
+
+
+"""
+SIZE
+"""
+#makes it a clean string
+def sRemoveLeftWhiteSpace(strInput): #str
+    strInput = strInput.lstrip()
+    strInput = strInput.lstrip('b')
+    strInput
+    
+#checks if length is one i.e. only one number was given
+def sCheckSize(strInput): #str
+    return (len(strInput.split()) == 1) #boolean output
+
+#checks if the entry is an integer
+def sCheckInt(strInput): #str
+    try:
+        return isinstance(int(strInput), int)
+    except ValueError:
+        return False
+
+#checks the range
+def sCheckRange(strInput): #str
+    theInt = int(strInput)
+    return (theInt > -1) and (theInt < 10**9)
+

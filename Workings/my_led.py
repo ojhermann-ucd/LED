@@ -36,3 +36,8 @@ with theSource as theSrc:
         sys.exit()
     theSize = int(theSrc)
 
+#xList and yList
+xList = CoordinateList(theSize).list
+yList = CoordinateList(theSize).list
+
+#the action
