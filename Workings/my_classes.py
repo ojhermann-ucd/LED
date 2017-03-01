@@ -3,6 +3,7 @@ CONTENTS
 #coordinates
 #instructions
 #manipulations
+#links
 """
 
 
@@ -129,3 +130,42 @@ print(xList)
 yList = mMain(made3, yList, 'y')
 print("")
 print(yList)
+
+
+"""
+LINKS
+"""
+import urllib.request
+from urllib.error import URLError, HTTPError
+
+#check if link is valid
+def validLink(strLink): #str
+    try:
+        theLink = urllib.request.urlopen(strLink)
+        return True
+    except ValueError:
+        return False
+    except HTTPError:
+        return False
+    except URLError:
+        return False
+    else:
+        return False
+
+class CleanLink:
+    
+    def __init__(self, strLink):
+        self.str = strLink
+        self.clean = self.str.rstrip('\n')
+
+aLink = "http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3.txt"
+print("")
+print(validLink(aLink))
+
+bLink = "http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3.txt\n"
+print("")
+print(bLink)
+bLink = CleanLink(bLink).clean
+print("")
+print(bLink)
+print("test line")
