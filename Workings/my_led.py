@@ -38,8 +38,9 @@ with theSource as theSrc:
     theSize = int(theSrc)
 
 #xList and yList
-xList = my_classes.CoordinateList(theSize).list
-yList = my_classes.CoordinateList(theSize).list
+xList = my_classes.CoordinateList(theSize - 1).list
+yList = my_classes.CoordinateList(theSize - 1).list
+theSum = 0
 for line in urllib.request.urlopen(theLink):
     #clean
     theLine = str(line, 'utf-8')
@@ -49,8 +50,10 @@ for line in urllib.request.urlopen(theLink):
     xList = my_classes.mMain(iList, xList, 'x')
     #yList manipulation
     yList = my_classes.mMain(iList, yList, 'y')
+    #theSum
+    
 
 #output
-theProduct = sum(xList) * sum(yList)
+theProduct = (sum(xList) + 1) * (sum(yList) + 1)
 output1 = my_classes.CleanLink(args.source).clean
 print(output1, theProduct)

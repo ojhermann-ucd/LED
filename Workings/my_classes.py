@@ -5,6 +5,7 @@ CONTENTS
 #manipulations
 #links
 #size
+#summing
 """
 
 
@@ -65,13 +66,7 @@ def iRange(iList, upperBound):
 #makes sure that x1<=x2 and y1<=y2
 def iOrder(iList):
     return (int(iList[1]) <= int(iList[3]) and int(iList[2]) <= int(iList[4]))
-"""
-#changes numbers into int
-def iInt(iList):
-    for i in range(1, 5, 1):
-        iList[i] = int(iList[i])
-    return iList
-"""
+
 #combines the Instruction functions into a single function
 def iMake(str, upperBound): #input string from file, upperBound from file as int
     iList = iFormat(str) #format string into list
@@ -205,3 +200,43 @@ def sCheckRange(strInput): #str
     theInt = int(strInput)
     return (theInt > -1) and (theInt < 10**9)
 
+
+"""
+SUMMING
+"""
+#change for On command
+def sOn(iList, xList, yList):
+    #z2 - z1 + 1
+    x1 = iList[1]
+    x2 = iList[3]
+    y1 = iList[2]
+    y2 = iList[4]
+    xVar = x2 - x1 + 1
+    yVar = y2 - y1 + 1
+    #already on
+    xOn = sum(iList[x1 : x2 + 1 : 1])
+    yOn = sum(iList[y1 : y2 + 1 : 1])
+    #output
+    xVar += xOn
+    yVar += yOn
+    return xVar * yVar
+    
+#change for Off command
+def sOff(iList, xList, yList):
+    #z2 - z1 + 1
+    x1 = iList[1]
+    x2 = iList[3]
+    y1 = iList[2]
+    y2 = iList[4]
+    xVar = x1 - x2 - 1
+    yVar = y1 - y2 - 1
+    #already off
+    xOff = (x2 - x1 + 1) - sum(iList[x1 : x2 + 1 : 1])
+    yOff = (y2 - y1 + 1) - sum(iList[y1 : y2 + 1 : 1])
+    #output
+    xVar += xOff
+    yVar += yOff
+    return xVar * yVar
+
+def aSwitch(iList, xList, yList):
+    
