@@ -90,9 +90,9 @@ made2 = iMake(made2, lengthValue)
 made3 = iMake(made3, lengthValue)
 
 print("")
-print(made1)
-print(made2)
-print(made3)
+print("iList 1:", made1)
+print("iList 2:", made2)
+print("iList 3:", made3)
 
 
 """
@@ -106,23 +106,26 @@ def mRange(iList, mAxis): #list, str
         mOutput = range(iList[2], iList[4] + 1, 1)
     return mOutput
 
-#converts a given boolean value to another boolean value
-def mCommand(iCommand, iBool): #str, bool
-    if iCommand == "on":
-        iBool = True
-    elif iCommand == "off":
-        iBool = False
-    else:
-        iBool = not bool(iBool)
-
 #manipulates the boolean values of xList and yList given information in iList
-def mMain(iList, xList, yList): #list, list, list
-    #ranges
-    xRange = mRange(iList, 'x')
-    yRange = mRange(iList, 'y')
+def mMain(iList, zList, mAxis): #list, list, str
+    #range
+    zRange = mRange(iList, mAxis)
     #manipulate booleans
     iCommand = iList[0]
-    for x in xRange:
-        xList[x] = mCommand(iCommand, xList[x])
-    for y in yRange:
-        yList[y] = mCommand(iCommand, yList[y])
+    for z in zRange:
+        if iCommand == "on":
+            zList[z] = True
+        elif iCommand == "off":
+            zList[z] = False
+        else:
+            zList[z] = not bool(zList[z])
+    return zList
+        
+        
+xList = mMain(made3, xList, 'x')
+print("")
+print(xList)
+
+yList = mMain(made3, yList, 'y')
+print("")
+print(yList)
