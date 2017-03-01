@@ -1,4 +1,12 @@
 """
+CONTENTS
+#coordinates
+#instructions
+#manipulations
+"""
+
+
+"""
 COORDINATES
 """
 #make the coordinate lists: xList and yList
@@ -26,18 +34,6 @@ def iFormat(str):
         str = str.replace(s[0], s[1])
     str = str.split() #turn it from string to list
     return str #this is now a list
-
-i1 = "turn on 1,2 through 3,4"
-i2 = "turn off 2,3 through 2, 3"
-i3 = "switch 4,4 through 5,5"
-i1 = iFormat(i1)
-i2 = iFormat(i2)
-i3 = iFormat(i3)
-print("")
-print("i1:", i1)
-print("i2:", i2)
-print("i3:", i3)
-
     
 #determines if the Instruction is valid
 def iValid(iList):
@@ -53,11 +49,6 @@ def iValid(iList):
             return False
     return True
 
-print("")
-print("Valid Status 1:", iValid(i1))
-print("Valid Status 2:", iValid(i2))
-print("Valid Status 3:", iValid(i3))
-
 #makes sure the integer values are within acceptable ranges
 def iRange(iList, upperBound):
     for i in range(1, 5, 1):
@@ -65,21 +56,9 @@ def iRange(iList, upperBound):
         iList[i] = str(min(int(iList[i]), upperBound))
     return iList
 
-print("")
-print("Range Fix 1:", iRange(i1, lengthValue))
-print("Range Fix 2:", iRange(i2, lengthValue))
-print("Range Fix 3:", iRange(i3, lengthValue))
-
-
 #makes sure that x1<=x2 and y1<=y2
 def iOrder(iList):
     return (int(iList[1]) <= int(iList[3]) and int(iList[2]) <= int(iList[4]))
-
-print("")
-print("Order 1:", iOrder(i1))
-print("Order 2:", iOrder(i2))
-print("Order 3:", iOrder(i3))
-
 
 #changes numbers into int
 def iInt(iList):
@@ -87,11 +66,7 @@ def iInt(iList):
         iList[i] = int(iList[i])
     return iList
 
-print("")
-print("iInt 1:", iInt(i1))
-print("iInt 2:", iInt(i2))
-print("iInt 3:", iInt(i3))
-
+#combines the Instruction functions into a single function
 def iMake(str, upperBound): #input string from file, upperBound from file as int
     iStatus = True
     while iStatus == True:
@@ -118,3 +93,36 @@ print("")
 print(made1)
 print(made2)
 print(made3)
+
+
+"""
+MANIPULATIONS
+"""
+#generates the ranges for manipulation
+def mRange(iList, mAxis): #list, str
+    if mAxis == 'x':
+        mOutput = range(iList[1], iList[3] + 1, 1)
+    else:
+        mOutput = range(iList[2], iList[4] + 1, 1)
+    return mOutput
+
+#converts a given boolean value to another boolean value
+def mCommand(iCommand, iBool): #str, bool
+    if iCommand == "on":
+        iBool = True
+    elif iCommand == "off":
+        iBool = False
+    else:
+        iBool = not bool(iBool)
+
+#manipulates the boolean values of xList and yList given information in iList
+def mMain(iList, xList, yList): #list, list, list
+    #ranges
+    xRange = mRange(iList, 'x')
+    yRange = mRange(iList, 'y')
+    #manipulate booleans
+    iCommand = iList[0]
+    for x in xRange:
+        xList[x] = mCommand(iCommand, xList[x])
+    for y in yRange:
+        yList[y] = mCommand(iCommand, yList[y])
