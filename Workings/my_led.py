@@ -53,3 +53,6 @@ with theSource as theSrc:
             yList = mMain(iList, yList, 'y')
         count += 1
 
+#output
+theSum = sum(xList) + sum(yList)
+print(theSource, theSum)
