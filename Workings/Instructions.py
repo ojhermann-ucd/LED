@@ -5,6 +5,8 @@ class Instruction:
     # list = [str, int, int, int, int]
     ## str = 'on', 'off', 'switch'
     
+    #input: list
+    #output: list or int
     def __init__(self, theList):
         self.instruction = theList
         self.command = theList[0]
