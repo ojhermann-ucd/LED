@@ -5,7 +5,6 @@ CONTENTS
 #manipulations
 #links
 #size
-#summing
 """
 
 
@@ -76,6 +75,17 @@ def iMake(str, upperBound): #input string from file, upperBound from file as int
     if not iOrder(iList): #check that the range is well ordered
         return ['pass', False, False, False, False]
     return iList
+
+#makes using the lists more clear to the user
+class Instruc:
+    def __init__(self, iList):
+        self.command = iList[0]
+        self.x1 = iList[1]
+        self.x2 = iList[3]
+        self.y1 = iList[2]
+        self.y2 = iList[4]
+        self.xRange = range(self.x1, self.x2 + 1, 1)
+        self.yRange = range(self.y1, self.y2 + 1, 1)
     
 """
 made1 = "turn on 1,2 through 3,4"
@@ -96,6 +106,20 @@ print("iList 3:", made3)
 """
 MANIPULATIONS
 """
+#manipulate the LED
+def mLED(xRange, yRange, theCoords, theCommand):
+    for x in xRange:
+        for y in yRange:
+            if theCommand=='on':
+                theCoords[x][y] = True
+            elif theCommand=='off':
+                theCoords[x][y] = False
+            elif theCommand=='switch':
+                theCoords[x][y] = not bool(theCoords[x][y])
+            else:
+                pass
+    return theCoords
+
 #generates the ranges for manipulation
 def mRange(iList, mAxis): #list, str
     if mAxis == 'x':
@@ -199,61 +223,3 @@ def sCheckInt(strInput): #str
 def sCheckRange(strInput): #str
     theInt = int(strInput)
     return (theInt > -1) and (theInt < 10**9)
-
-
-
-
-
-
-"""
-SUMMING
-"""
-#change for On command
-def sOn(iList, xList, yList):
-    #z2 - z1 + 1
-    x1 = iList[1]
-    x2 = iList[3]
-    y1 = iList[2]
-    y2 = iList[4]
-    xVar = x2 - x1 + 1
-    yVar = y2 - y1 + 1
-    #already on
-    xOn = sum(xList[x1 : x2 + 1 : 1])
-    yOn = sum(yList[y1 : y2 + 1 : 1])
-    #output
-    xVar += xOn
-    yVar += yOn
-    return xVar * yVar
-    
-#change for Off command
-def sOff(iList, xList, yList):
-    #z2 - z1 + 1
-    x1 = iList[1]
-    x2 = iList[3]
-    y1 = iList[2]
-    y2 = iList[4]
-    xVar = x1 - x2 - 1
-    yVar = y1 - y2 - 1
-    #already off
-    xOff = (x2 - x1 + 1) - sum(xList[x1 : x2 + 1 : 1])
-    yOff = (y2 - y1 + 1) - sum(yList[y1 : y2 + 1 : 1])
-    #output
-    xVar += xOff
-    yVar += yOff
-    return xVar * yVar
-
-#change for Switch command
-def sSwitch(iList, xList, yList):
-    return sOff(iList, xList, yList) - sOn(iList, xList, yList)
-
-#change
-def sSum(iList, xList, yList):
-    theCommand = iList[0]
-    if theCommand == 'on':
-        return sOn(iList, xList, yList)
-    if theCommand == 'off':
-        return sOff(iList, xList, yList)
-    if theCommand == 'switch':
-        return sSwitch(iList, xList, yList)
-    if theCommand == 'pass':
-        return 0
