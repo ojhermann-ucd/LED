@@ -17,6 +17,7 @@ GUIDE
 #the functions and classes are organised by their function in the overall process (see ReadMe file for overview)
 #each function and class contains a single line description, input and output types, and line comments
 #referencing the Read Me file should assist in providing context for each item below
+#BEST PRACTICE: follow the flow of control of my_led and refer to this as needed
 """
 
 
