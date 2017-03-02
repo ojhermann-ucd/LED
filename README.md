@@ -3,6 +3,16 @@ comp30670 Assignment3
 
 NOTE TO USER: this will assist you in using the program, but the best way to understand it is to follow the flow of contrl in my_led.py, reading the comments, and refer to other files as necessary.
 
+README.md
+LED/
+  Workings/
+    __init__.py
+    my_classes.py
+    my_led.py
+  Tests/
+    Test.py
+  Setup.py
+
 Summary
 This program will use the data on a url, provided via a command line input, to calculate how many LEDs are on after all commands are executed.  The url is vetted, and then the data is formatted and evaluated line by line until all commands have been executed.
 
@@ -14,6 +24,7 @@ Each file of code contains significant comments which a curious user will find h
 
 Components
 
+README.md
 LED/
   Workings/
     __init__.py
@@ -21,8 +32,7 @@ LED/
     my_led.py
   Tests/
     Test.py
-README.md
-Setup.py
+  Setup.py
 
 README.md
 This contains some elements of this text to assist users of the program.
