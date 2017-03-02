@@ -38,22 +38,47 @@ with theSource as theSrc:
     theSize = int(theSrc)
 
 #xList and yList
-xList = my_classes.CoordinateList(theSize - 1).list
-yList = my_classes.CoordinateList(theSize - 1).list
+#xList = my_classes.CoordinateList(theSize - 1).list
+#yList = my_classes.CoordinateList(theSize - 1).list
 theSum = 0
+theCoordinates = [ [False]*theSize for r in range(0, theSize, 1)]
 for line in urllib.request.urlopen(theLink):
     #clean
     theLine = str(line, 'utf-8')
     #make the instruction
     iList = my_classes.iMake(theLine, theSize)
+    #variables
+    theCommand = iList[0]
+    x1 = iList[1]
+    x2 = iList[3]
+    y1 = iList[2]
+    y2 = iList[4]
+    xRange = range(x1, x2 + 1, 1)
+    yRange = range(y1, y2 + 1, 1)
+    for x in xRange:
+        for y in yRange:
+            if theCommand=='on':
+                theCoordinates[x][y] = True
+            elif theCommand=='off':
+                theCoordinates[x][y] = False
+            elif theCommand=='switch':
+                theCoordinates[x][y] = not bool(theCoordinates[x][y])
+            else:
+                pass
+    
+    """
+    #theSum
+    theSum += my_classes.sSum(iList, xList, yList)
+    """
+    """
     #xList manipulation
     xList = my_classes.mMain(iList, xList, 'x')
     #yList manipulation
-    yList = my_classes.mMain(iList, yList, 'y')
-    #theSum
+    yList = my_classes.mMain(iList, yList, 'y')    
+    """
     
-
 #output
-theProduct = (sum(xList) + 1) * (sum(yList) + 1)
 output1 = my_classes.CleanLink(args.source).clean
-print(output1, theProduct)
+for s in range(0, theSize, 1):
+    theSum += sum(theCoordinates[s])
+print(output1, theSum)

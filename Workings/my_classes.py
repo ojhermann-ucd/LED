@@ -214,8 +214,8 @@ def sOn(iList, xList, yList):
     xVar = x2 - x1 + 1
     yVar = y2 - y1 + 1
     #already on
-    xOn = sum(iList[x1 : x2 + 1 : 1])
-    yOn = sum(iList[y1 : y2 + 1 : 1])
+    xOn = sum(xList[x1 : x2 + 1 : 1])
+    yOn = sum(yList[y1 : y2 + 1 : 1])
     #output
     xVar += xOn
     yVar += yOn
@@ -231,12 +231,25 @@ def sOff(iList, xList, yList):
     xVar = x1 - x2 - 1
     yVar = y1 - y2 - 1
     #already off
-    xOff = (x2 - x1 + 1) - sum(iList[x1 : x2 + 1 : 1])
-    yOff = (y2 - y1 + 1) - sum(iList[y1 : y2 + 1 : 1])
+    xOff = (x2 - x1 + 1) - sum(xList[x1 : x2 + 1 : 1])
+    yOff = (y2 - y1 + 1) - sum(yList[y1 : y2 + 1 : 1])
     #output
     xVar += xOff
     yVar += yOff
     return xVar * yVar
 
-def aSwitch(iList, xList, yList):
-    
+#change for Switch command
+def sSwitch(iList, xList, yList):
+    return sOff(iList, xList, yList) - sOn(iList, xList, yList)
+
+#change
+def sSum(iList, xList, yList):
+    theCommand = iList[0]
+    if theCommand == 'on':
+        return sOn(iList, xList, yList)
+    if theCommand == 'off':
+        return sOff(iList, xList, yList)
+    if theCommand == 'switch':
+        return sSwitch(iList, xList, yList)
+    if theCommand == 'pass':
+        return 0
