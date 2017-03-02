@@ -60,7 +60,7 @@ def iValid(iList):
 def iRange(iList, upperBound):
     for i in range(1, 5, 1):
         iList[i] = max(0, iList[i])
-        iList[i] = min(iList[i], upperBound)
+        iList[i] = min(iList[i], upperBound - 1)
     return iList
 
 #makes sure that x1<=x2 and y1<=y2
@@ -199,6 +199,10 @@ def sCheckInt(strInput): #str
 def sCheckRange(strInput): #str
     theInt = int(strInput)
     return (theInt > -1) and (theInt < 10**9)
+
+
+
+
 
 
 """
