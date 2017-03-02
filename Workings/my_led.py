@@ -26,16 +26,12 @@ with theSource as theSrc:
     #clean
     theSrc = theSrc.readline().decode('utf-8')
     #checks
-    if not my_classes.sCheckSize(theSrc):
-        print("There was more than one number input for size")
+    if not my_classes.sChecks(theSrc):
+        print("There is something wrong with the input provided for the size of the LED grid.")
+        print("Check if: there is more than one number, the value entered is not Python-integer friendly, or if it's out of the range [0, 10^9]")
         sys.exit()
-    if not my_classes.sCheckInt(theSrc):
-        print("Whatever was entered for size is not Python-integer friendly.")
-        sys.exit()
-    if not my_classes.sCheckRange(theSrc):
-        print("The integer entered for the size is not within the appropriate range [0, 10^9]")
-        sys.exit()
-    theSize = int(theSrc)
+    else:
+        theSize = int(theSrc)
 
 #the action
 theSum = 0

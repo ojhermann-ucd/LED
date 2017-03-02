@@ -120,32 +120,6 @@ def mLED(xRange, yRange, theCoords, theCommand):
                 pass
     return theCoords
 
-#generates the ranges for manipulation
-def mRange(iList, mAxis): #list, str
-    if mAxis == 'x':
-        mOutput = range(iList[1], iList[3] + 1, 1)
-    else:
-        mOutput = range(iList[2], iList[4] + 1, 1)
-    return mOutput
-
-#manipulates the boolean values of xList and yList given information in iList
-def mMain(iList, zList, mAxis): #list, list, str
-    #command
-    iCommand = iList[0]
-    #check
-    if iCommand == 'pass':
-        return zList
-    #range
-    zRange = mRange(iList, mAxis)
-    #manipulate booleans
-    for z in zRange:
-        if iCommand == "on":
-            zList[z] = True
-        elif iCommand == "off":
-            zList[z] = False
-        else:
-            zList[z] = not bool(zList[z])
-    return zList
         
 """        
 xList = mMain(made3, xList, 'x')
@@ -201,13 +175,7 @@ print("test line")
 
 """
 SIZE
-"""
-#makes it a clean string
-def sRemoveLeftWhiteSpace(strInput): #str
-    strInput = strInput.lstrip()
-    strInput = strInput.lstrip('b')
-    strInput
-    
+"""   
 #checks if length is one i.e. only one number was given
 def sCheckSize(strInput): #str
     return (len(strInput.split()) == 1) #boolean output
@@ -223,3 +191,6 @@ def sCheckInt(strInput): #str
 def sCheckRange(strInput): #str
     theInt = int(strInput)
     return (theInt > -1) and (theInt < 10**9)
+
+def sChecks(strInput):
+    return sCheckSize(strInput) and sCheckRange(strInput) and sCheckRange(strInput)
